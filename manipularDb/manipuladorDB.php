@@ -34,7 +34,7 @@
             }
         }
 
-        public function listarMedico ($crm){
+        public function listarMedicoCrm ($crm){
             global $pdo;
 
             if($crm){
@@ -45,12 +45,80 @@
                 }else{
                     echo "<script> alert('Nenhum cadastro foi encontrado') </script>";
                 }
-            }
-            
+            }   
         }
-        //Tentei consultar pelo nome ou CRM, porém não deu muito certo.. Por algum motivo também a busca de todo o banco de dados não retornava todos. Retornava apenas 2. 
-        //Resolvi deixar para a parte final, assim não perco fluxo do projeto.
 
+        public function listarMedicoNome ($nome){
+            global $pdo;
+
+            if($nome){
+                $retornoConsulta = $pdo->query("SELECT * FROM medicos WHERE nome= '$nome'");
+                $retorno= $retornoConsulta->fetch(PDO::FETCH_ASSOC);
+                if($retorno){
+                    return $retorno;
+                }else{
+                    echo "<script> alert('Nenhum cadastro foi encontrado') </script>";
+            }
+                
+            }   
+        }
+
+        public function listarTodosMedicosNome ($nome){
+            global $pdo;
+
+            if($nome){
+                $retornoConsulta = $pdo->query("SELECT * FROM medicos WHERE nome= '$nome'");
+                $contador = 0;
+                while($retornoConsulta->fetch(PDO::FETCH_ASSOC)){
+                    $retorno[$contador] = $retornoConsulta->fetch(PDO::FETCH_ASSOC);
+                    ++$contador;
+                }
+                if($retorno){
+                    return $retorno;
+                }else{
+                    echo "<script> alert('Nenhum cadastro foi encontrado') </script>";
+            }
+                
+            }   
+        }
+        //Por algum motivo também a busca de todo o banco de dados não retornava todos. Retornava alguns, mas não todos.. Não entendi ao certo o motivo, mas sigo averiguando
+
+        public function listarTodosMedicos (){
+            global $pdo;
+
+                $retornoConsulta = $pdo->query("SELECT * FROM medicos ORDER BY especialidade ASC");
+                $contador = 0;
+                while($retornoConsulta->fetch(PDO::FETCH_ASSOC)){
+                    $retorno[$contador] = $retornoConsulta->fetch(PDO::FETCH_ASSOC);
+                    ++$contador;
+                }
+                if($retorno){
+                    return $retorno;
+                }else{
+                    echo "<script> alert('Nenhum cadastro foi encontrado') </script>";
+                }  
+        }
+        //Por algum motivo também a busca de todo o banco de dados não retornava todos. Retornava alguns, mas não todos.. Não entendi ao certo o motivo, mas sigo averiguando
+
+        public function listarMedicosEspecialidades ($especialidade){
+            global $pdo;
+
+            if($especialidade){
+                $retornoConsulta = $pdo->query("SELECT * FROM medicos WHERE especialidade= '$especialidade'");
+                $contador = 0;
+                while($retornoConsulta->fetch(PDO::FETCH_ASSOC)){
+                    $retorno[$contador] = $retornoConsulta->fetch(PDO::FETCH_ASSOC);
+                    ++$contador;
+                }
+                if($retorno){
+                    return $retorno;
+                }else{
+                    echo "<script> alert('Nenhum cadastro foi encontrado') </script>";
+            }
+                
+            }   
+        }
+        //Por algum motivo também a busca de todo o banco de dados não retornava todos. Retornava alguns, mas não todos.. Não entendi ao certo o motivo, mas sigo averiguando
 
         public function atualizarMedico ($crm, $novoNome, $novaIdade, $novoGenero, $novaEspecialidade){
             global $pdo;
@@ -66,7 +134,7 @@
                 if($novoGenero == "M" || $novoGenero == "F"){
                     $atualizar->bindValue(":g", $novoGenero);
                 }
-                
+
                 $atualizar->bindValue(":e", $novaEspecialidade);
                 $atualizar->execute();
                 header("location:../paginas/atualizar.php?crm=$crm");

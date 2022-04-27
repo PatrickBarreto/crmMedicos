@@ -105,6 +105,27 @@ small{
     margin: 0 0 0 20px;
 }
 
+/*Página consultar*/
+#buscaGeral{
+    width: max-content;
+    margin: 10px auto;
+}
+
+#buscaGeral a{
+    width: max-content;
+}
+
+#buttonBuscaGeral{
+    background-color: #EFEFEF;
+    margin: 20px 100px;
+    color: black
+}
+
+.formBusca{
+    padding: 20px 0 20px 0;
+}
+
+
 @media(max-width:700px) {
     button{
         display: block;       

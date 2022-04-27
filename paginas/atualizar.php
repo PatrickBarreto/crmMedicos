@@ -4,7 +4,23 @@
         require_once '../manipularDb/manipuladorDB.php';
         $acessoDb = new manipuladorDB;
         $acessoDb->conectarBanco();
-        $retornoMedico = $acessoDb->listarMedico($_GET["crm"]);
+        $retornoMedico = $acessoDb->listarMedicoCrm($_GET["crm"]);
+        if($retornoMedico){
+            $crm = $retornoMedico["crm"];
+            $nome = $retornoMedico["nome"];
+            $idade = $retornoMedico["idade"];
+            $genero = $retornoMedico["genero"];
+            $especialidade = $retornoMedico["especialidade"];
+        }else{
+            header('location:./consultar.php');
+        }
+    }
+
+    if(isset($_GET["nome"])){
+        require_once '../manipularDb/manipuladorDB.php';
+        $acessoDb = new manipuladorDB;
+        $acessoDb->conectarBanco();
+        $retornoMedico = $acessoDb->listarMedicoNome($_GET["nome"]);
         if($retornoMedico){
             $crm = $retornoMedico["crm"];
             $nome = $retornoMedico["nome"];
@@ -61,7 +77,7 @@
 </head>
 <body>
     <header>    
-        <img src="https://logowik.com/content/uploads/images/albert-einstein-hospital6256.jpg"/>
+        <a href="../index.php"><img src="https://logowik.com/content/uploads/images/albert-einstein-hospital6256.jpg"/></a>
     </header>
 
     <main>

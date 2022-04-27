@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <img src="https://logowik.com/content/uploads/images/albert-einstein-hospital6256.jpg"/>
+        <a href="./index.php"><img src="https://logowik.com/content/uploads/images/albert-einstein-hospital6256.jpg"/></a>
     </header>
 
     <main>
