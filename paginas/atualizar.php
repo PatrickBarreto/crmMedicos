@@ -1,5 +1,7 @@
 <?php
     
+    //Entrada das consultar médicos pelo CRM
+
     if(isset($_GET["crm"])){
         require_once '../manipularDb/manipuladorDB.php';
         $acessoDb = new manipuladorDB;
@@ -16,6 +18,8 @@
         }
     }
 
+    //Entrada das consultar de médicos pelo Nome
+
     if(isset($_GET["nome"])){
         require_once '../manipularDb/manipuladorDB.php';
         $acessoDb = new manipuladorDB;
@@ -31,6 +35,8 @@
             header('location:./consultar.php');
         }
     }
+
+    // Recebimento de dados atualizados nesta página
 
     if(isset($_GET["crm"]) && isset($_GET["novoNome"]) || isset($_GET["novaIdade"]) || isset($_GET["novoGenero"]) || isset($_GET["novaEspecialidade"])){
         if ($_GET["novoNome"] != "" || $_GET["novaIdade"] != "" || $_GET["novoGenero"] != "" || $_GET["novaEspecialidade"] != "")

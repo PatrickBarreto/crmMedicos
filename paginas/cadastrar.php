@@ -1,4 +1,7 @@
 <?php
+
+    //Entrada dos dados de cadastro e envio para o banco
+
     if(isset($_GET["crm"]) && isset($_GET["nome"]) && isset($_GET["idade"])  && isset($_GET["genero"]) && isset($_GET["especialidade"])){
         $numeroCRM = addslashes($_GET["crm"]);
         $nomeMedico = addslashes($_GET["nome"]);

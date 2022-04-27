@@ -97,7 +97,7 @@ button{
     color:white;
 }
 
-/*Página Atualizar*/
+/*############Página Atualizar###########*/
 #inputCrm{
     display: none;
 }
@@ -105,7 +105,9 @@ small{
     margin: 0 0 0 20px;
 }
 
-/*Página consultar*/
+
+
+/*###########Página consultar#############*/
 #buscaGeral{
     width: max-content;
     margin: 10px auto;
@@ -123,6 +125,25 @@ small{
 
 .formBusca{
     padding: 20px 0 20px 0;
+}
+
+table{
+    width: 500px;
+    border: 1px solid gray;
+    margin: 30px auto;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px gray;
+}
+th{
+    width: 350px;
+    border-bottom: 1px solid gray;
+    border-right: 1px solid gray;
+}
+td{
+    width: 350px;
+    border-bottom: 1px solid gray;
+    border-right: 1px solid gray;
 }
 
 

@@ -23,7 +23,7 @@
                 <a href="./paginas/cadastrar.php"><button>Cadastrar médicos</button></a>
                 <a href="./paginas/consultar.php"><button>Consultar médicos</button></a>
             </div>
-            </section>    
+        </section>    
     </main>
     
 </body>

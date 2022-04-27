@@ -11,7 +11,6 @@
             }catch(PDOException $e){
                 $e->getMessage();
             }
-            
         }
 
         public function cadastrarMedico ($crm, $nome, $idade, $genero, $especialidade){
@@ -32,6 +31,7 @@
             }else{
                 echo "<script> alert('Já exite um cadastro com o CRM $crm') </script>";
             }
+            unset($pdo);
         }
 
         public function listarMedicoCrm ($crm){
@@ -46,6 +46,7 @@
                     echo "<script> alert('Nenhum cadastro foi encontrado') </script>";
                 }
             }   
+            unset($pdo);
         }
 
         public function listarMedicoNome ($nome){
@@ -58,9 +59,9 @@
                     return $retorno;
                 }else{
                     echo "<script> alert('Nenhum cadastro foi encontrado') </script>";
+                }                
             }
-                
-            }   
+            unset($pdo);   
         }
 
         public function listarTodosMedicosNome ($nome){
@@ -77,28 +78,27 @@
                     return $retorno;
                 }else{
                     echo "<script> alert('Nenhum cadastro foi encontrado') </script>";
-            }
-                
+                }                
             }   
-        }
-        //Por algum motivo também a busca de todo o banco de dados não retornava todos. Retornava alguns, mas não todos.. Não entendi ao certo o motivo, mas sigo averiguando
+            unset($pdo);
+        }//Por algum motivo a busca de todo o banco de dados não retorna todos. Retornava alguns, mas não todos.. Não entendi ao certo o motivo, aguardar para averiguar na refatoração
 
         public function listarTodosMedicos (){
             global $pdo;
 
-                $retornoConsulta = $pdo->query("SELECT * FROM medicos ORDER BY especialidade ASC");
-                $contador = 0;
-                while($retornoConsulta->fetch(PDO::FETCH_ASSOC)){
-                    $retorno[$contador] = $retornoConsulta->fetch(PDO::FETCH_ASSOC);
-                    ++$contador;
-                }
-                if($retorno){
-                    return $retorno;
-                }else{
-                    echo "<script> alert('Nenhum cadastro foi encontrado') </script>";
-                }  
-        }
-        //Por algum motivo também a busca de todo o banco de dados não retornava todos. Retornava alguns, mas não todos.. Não entendi ao certo o motivo, mas sigo averiguando
+            $retornoConsulta = $pdo->query("SELECT * FROM medicos ORDER BY especialidade DESC");
+            $contador = 0;
+            while($retornoConsulta->fetch(PDO::FETCH_ASSOC)){
+                $retorno[$contador] = $retornoConsulta->fetch(PDO::FETCH_ASSOC);
+                ++$contador;
+            }
+            if($retorno){
+                return $retorno;
+            }else{
+                echo "<script> alert('Nenhum cadastro foi encontrado') </script>";
+            }
+            unset($pdo);  
+        }//Por algum motivo a busca de todo o banco de dados não retorna todos. Retornava alguns, mas não todos.. Não entendi ao certo o motivo, aguardar para averiguar na refatoração
 
         public function listarMedicosEspecialidades ($especialidade){
             global $pdo;
@@ -114,11 +114,10 @@
                     return $retorno;
                 }else{
                     echo "<script> alert('Nenhum cadastro foi encontrado') </script>";
+                }                
             }
-                
-            }   
-        }
-        //Por algum motivo também a busca de todo o banco de dados não retornava todos. Retornava alguns, mas não todos.. Não entendi ao certo o motivo, mas sigo averiguando
+            unset($pdo);   
+        }//Por algum motivo a busca de todo o banco de dados não retorna todos. Retornava alguns, mas não todos.. Não entendi ao certo o motivo, aguardar para averiguar na refatoração
 
         public function atualizarMedico ($crm, $novoNome, $novaIdade, $novoGenero, $novaEspecialidade){
             global $pdo;
@@ -142,14 +141,14 @@
             }else{
                 echo "<script> alert('Nenhum cadastro foi encontrado') </script>";
             }
-            
+            unset($pdo);  
         }
 
         public function removerMedico ($crm){
             global $pdo;
             $retornoConsulta = $pdo->query("DELETE FROM medicos WHERE crm= $crm");
+            unset($pdo);
         }
-
 
     }
 
